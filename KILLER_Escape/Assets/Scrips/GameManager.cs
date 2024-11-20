@@ -7,6 +7,15 @@ public partial class GameManager : MonoBehaviour
     private GameConst.PlayerTurn currentPlayerTurn;
     private GameConst.PlayerActionState currentPlayerAction;
 
+    [SerializeField]
+    private MapManager mapManager;
+
+    [SerializeField]
+    private Player[] players;
+    private int actionPlayerID;
+    private int movePoint;
+
+
     void Start()
     {
         
@@ -71,6 +80,22 @@ public partial class GameManager : MonoBehaviour
                 break;
         }
     }
+
+    
+    public void RandomMove()
+    {
+        movePoint = Random.Range(0, 9);
+
+        if (!players[actionPlayerID].ReturnMoveDir())
+        {
+            movePoint = movePoint * -1;
+        }
+
+        Debug.Log(movePoint);
+
+        mapManager.PlayerMove(movePoint,players[actionPlayerID]);
+    }
+
 
     private void Initialize()
     {
