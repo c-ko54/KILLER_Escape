@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int id;
-    private string playername;
+    private int playerID;
+    private string playerName;
     private int hp;
     private bool killer;
     
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     }
     public void SetId(int ID)
     {
-        id = ID;
+        playerID = ID;
     }
 
     public void GetCard(int CardID)
