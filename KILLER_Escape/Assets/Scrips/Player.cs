@@ -12,10 +12,17 @@ public class Player : MonoBehaviour
     [SerializeField]
     private bool moveDir;
 
+    private int playerID;
+
+    int steps;
+
+    public GameConst.MoveState currentMoveState;
+
 
     void Start()
     {
-        //moveDir = true;
+        moveDir = true;
+        currentMoveState=GameConst.MoveState.TO_RIGHT;
     }
 
     public void SetMoveDir(bool moveDir)
@@ -23,26 +30,49 @@ public class Player : MonoBehaviour
         this.moveDir = moveDir;
     }
 
-    public bool ReturnMoveDir()
+    public void SetPlayerID(int playerID)
+    {
+        this.playerID = playerID;
+    }
+
+    public void SetMoveState(GameConst.MoveState moveState)
+    {
+        currentMoveState = moveState;
+    }
+
+    public void SetSteps(int steps)
+    {
+        this.steps = steps;
+    }
+
+    public int GetSteps()
+    {
+        return steps;
+    }
+
+    public bool GetMoveDir()
     {
         return moveDir;
     }
 
-    public int returnPosX()
+    public int GetPosX()
     {
         return posX;
     }
 
-    public int ReturnPosY()
+    public int GetPosY()
     {
         return posY;
     }
 
 
-    public void UpdatePos(int x, int y)
+    public void UpdatePosX(int x)
     {
         posX = x;
-        posY = y;
     }
 
+    public void UpdatePosY(int y)
+    {
+        posY = y;
+    }
 }
