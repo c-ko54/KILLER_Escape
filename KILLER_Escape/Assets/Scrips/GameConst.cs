@@ -18,4 +18,12 @@ public static class GameConst
         ROULETTE,
         ACTION_END,
     };
+
+    public enum MoveState
+    {
+        TO_RIGHT,
+        TO_LEFT,
+        RIGHT_END,
+        LEFT_END,     
+    };
 }
