@@ -4,44 +4,75 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private int id;
-    private string playername;
-    private int hp;
-    private bool killer;
-    
-    private List<int> haveCard;
-    private List<int> encounter;
+    [SerializeField]
+    private int posX;
+    [SerializeField]
+    private int posY;
+    //進行方向
+    [SerializeField]
+    private bool moveDir;
+
+    private int playerID;
+
+    int steps;
+
+    public GameConst.MoveState currentMoveState;
+
 
     void Start()
     {
-
-    }
-    public void SetId(int ID)
-    {
-        id = ID;
+        moveDir = true;
+        currentMoveState=GameConst.MoveState.TO_RIGHT;
     }
 
-    public void GetCard(int CardID)
+    public void SetMoveDir(bool moveDir)
     {
-        if(haveCard.Count < 6)
-        {
-            haveCard.Add(CardID);
-        }
+        this.moveDir = moveDir;
     }
 
-    public void DestroyCard(int CardID)
+    public void SetPlayerID(int playerID)
     {
-        if(haveCard.Contains(CardID))
-        {
-            haveCard.Remove(CardID);
-        }
+        this.playerID = playerID;
     }
 
-    public void GetEncounter(int ID)
+    public void SetMoveState(GameConst.MoveState moveState)
     {
-        if(encounter.Contains(ID) != false)
-        {
-            encounter.Add(ID);
-        }
+        currentMoveState = moveState;
+    }
+
+    public void SetSteps(int steps)
+    {
+        this.steps = steps;
+    }
+
+    public int GetSteps()
+    {
+        return steps;
+    }
+
+    public bool GetMoveDir()
+    {
+        return moveDir;
+    }
+
+    public int GetPosX()
+    {
+        return posX;
+    }
+
+    public int GetPosY()
+    {
+        return posY;
+    }
+
+
+    public void UpdatePosX(int x)
+    {
+        posX = x;
+    }
+
+    public void UpdatePosY(int y)
+    {
+        posY = y;
     }
 }
