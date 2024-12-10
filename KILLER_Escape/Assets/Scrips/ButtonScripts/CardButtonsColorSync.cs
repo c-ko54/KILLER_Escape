@@ -21,17 +21,33 @@ public class CardButtonsColorSync : MonoBehaviour
     // 無効時の色
     private Color disabledColor;
 
+    // A,Dキーまたはマウスカーソルでカードボタンが選択状態かどうかを判断
     private bool IsHighlighted()
     {
         return EventSystem.current.currentSelectedGameObject == CardButton.gameObject ||
                EventSystem.current.IsPointerOverGameObject() &&
-               EventSystem.current.currentSelectedGameObject == null &&
+               //EventSystem.current.currentSelectedGameObject == null && 本来はこれを入れないとマウス/キーボード操作を分けられないが、利便性のため無力化
                RectTransformUtility.RectangleContainsScreenPoint(
                 CardButton.GetComponent<RectTransform>(),
                 Input.mousePosition,
                 Camera.main);
     }
     
+    // ボタンを押している状態かどうかを判断
+    private bool IsPressed()
+    {
+        return Input.GetMouseButton(0) && IsHighlighted();
+    }
+
+    // カードイメージの色更新
+    private void UpdateCardImagesColor(Color color)
+    {
+        foreach(var cardImage in CardImages)
+        {
+            cardImage.color = color;
+        }
+    }
+
     void Start()
     {
         ColorBlock colors = CardButton.colors;
@@ -44,6 +60,25 @@ public class CardButtonsColorSync : MonoBehaviour
 
     void Update()
     {
-        
+        if(!CardButton.interactable)
+        {
+            // ボタンが無効状態
+            UpdateCardImagesColor(disabledColor);
+        }
+        else if(IsPressed())
+        {
+            // ボタンが押された状態
+            UpdateCardImagesColor(pressedColor);
+        }
+        else if(IsHighlighted())
+        {
+            // ボタンが選択状態
+            UpdateCardImagesColor(highlightedColor);
+        }
+        else
+        {
+            // 通常状態
+            UpdateCardImagesColor(normalColor);
+        }
     }
 }
