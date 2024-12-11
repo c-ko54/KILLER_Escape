@@ -18,7 +18,7 @@ public partial class GameManager
         
         if(mapManager.GetMoveComp())
         {
-            mapManager.SetMoveComp(false);
+            mapManager.SetMoveStartComp(false);
 
             SetCurrentPlayerAction(GameConst.PlayerActionState.ACTION_END);
         }
