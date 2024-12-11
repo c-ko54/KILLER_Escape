@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
@@ -16,6 +17,8 @@ public partial class GameManager : MonoBehaviour
 
     [SerializeField]
     private GameObject[] moveButton = new GameObject[5];
+    [SerializeField]
+    private CinemachineVirtualCamera[] cameras = new CinemachineVirtualCamera[4];
 
     [SerializeField]
     private int actionPlayerID;
@@ -25,6 +28,7 @@ public partial class GameManager : MonoBehaviour
     void Start()
     {
         SpawnPlayer();
+        GetCamera();
     }
 
     // Update is called once per frame
@@ -64,7 +68,15 @@ public partial class GameManager : MonoBehaviour
             players[i] = Instantiate(player[i], mapManager.GetStartPos(), Quaternion.identity);
             players[i].SetPlayerID(i);
         }
+    }
 
+    private void GetCamera()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            cameras[i] = players[i].transform.GetChild(0).GetComponent<CinemachineVirtualCamera>();
+            cameras[i].Priority = (i == 0) ? 10 : 0;
+        }
     }
 
     private void SetCurrentPlayerTurn(GameConst.PlayerTurn playerTurn)
@@ -107,7 +119,7 @@ public partial class GameManager : MonoBehaviour
     {
         movePoint = Random.Range(3, 8);
 
-        Debug.Log(movePoint);
+        //Debug.Log(movePoint);
 
         mapManager.CalcMoveRange(movePoint, players[actionPlayerID]);
 
@@ -188,7 +200,7 @@ public partial class GameManager : MonoBehaviour
         mapManager.PlayerMoveX(players[actionPlayerID].GetPosX() + mapManager.GetRemainingSteps(), players[actionPlayerID]);
         mapManager.InitRemainingSteps();
         players[actionPlayerID].SetMoveState(GameConst.MoveState.TO_RIGHT);
-        mapManager.SetMoveComp(true);
+        mapManager.SetMoveStartComp(true);
     }
 
     public void Left()
@@ -196,7 +208,7 @@ public partial class GameManager : MonoBehaviour
         mapManager.PlayerMoveX(players[actionPlayerID].GetPosX() + mapManager.GetRemainingSteps(), players[actionPlayerID]);
         mapManager.InitRemainingSteps();
         players[actionPlayerID].SetMoveState(GameConst.MoveState.TO_LEFT);
-        mapManager.SetMoveComp(true);
+        mapManager.SetMoveStartComp(true);
     }
 
     private void Initialize()
