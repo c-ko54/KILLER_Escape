@@ -8,7 +8,6 @@ public partial class GameManager
 {
     [SerializeField] private GameObject roulette;
     [SerializeField] private GameObject roulettePar;
-    [SerializeField] private Transform rouletteTr;
     [SerializeField] public Animator rouletteAnimater;
     private bool rouletteAnmEnd = false;
 

@@ -941,6 +941,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8751298041283743583, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
   m_PrefabInstance: {fileID: 2664373074972620007}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &373503437 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2905013547376007951, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
+  m_PrefabInstance: {fileID: 2664373074972620007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &379026192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4203,6 +4208,11 @@ MonoBehaviour:
   - {fileID: 1255765877}
   - {fileID: 1055835159}
   - {fileID: 1171235136}
+  cameras:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   actionPlayerID: 0
   roulette: {fileID: 373503436}
   roulettePar: {fileID: 617630877}
@@ -4381,7 +4391,8 @@ Transform:
   m_LocalPosition: {x: 3.89, y: 0.22, z: -1.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 373503437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1681692510
@@ -5400,19 +5411,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1681692509}
     m_Modifications:
     - target: {fileID: 2905013547376007951, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.42
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 2905013547376007951, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.283
+      value: 0.06299999
       objectReference: {fileID: 0}
     - target: {fileID: 2905013547376007951, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.471
+      value: 0.62900007
       objectReference: {fileID: 0}
     - target: {fileID: 2905013547376007951, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5462,4 +5473,3 @@ SceneRoots:
   - {fileID: 1056119690}
   - {fileID: 74932517}
   - {fileID: 1604547819}
-  - {fileID: 2664373074972620007}
