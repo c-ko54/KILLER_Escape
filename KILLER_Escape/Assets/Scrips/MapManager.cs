@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using Photon.Pun;
 using Unity.VisualScripting;
+using System.Net.NetworkInformation;
 
 public class MapManager : SingletonBehavior<MapManager>
 {
@@ -14,7 +15,7 @@ public class MapManager : SingletonBehavior<MapManager>
     [SerializeField]
     private int remainingSteps;
 
-    private bool moveComp;
+    private bool moveStartComp;
     void Start()
     {
 
@@ -44,13 +45,13 @@ public class MapManager : SingletonBehavior<MapManager>
 
                     player.SetMoveState(GameConst.MoveState.TO_LEFT);
 
-                    SetMoveComp(true);
+                    SetMoveStartComp(true);
                 }
                 else
                 {
                     PlayerMoveX(move + player.GetPosX(), player);
 
-                    SetMoveComp(true);
+                    SetMoveStartComp(true);
                 }
                 break;
             case GameConst.MoveState.TO_LEFT:
@@ -68,13 +69,13 @@ public class MapManager : SingletonBehavior<MapManager>
 
                     player.SetMoveState(GameConst.MoveState.TO_RIGHT);
 
-                    SetMoveComp(true);
+                    SetMoveStartComp(true);
                 }
                 else
                 {
                     PlayerMoveX(player.GetPosX() - move, player);
 
-                    SetMoveComp(true);
+                    SetMoveStartComp(true);
                 }
                 break;
         }
@@ -88,7 +89,6 @@ public class MapManager : SingletonBehavior<MapManager>
         mPos = mapRows[player.GetPosY()].mapColumns[move].transform.position;
         pPos.DOMove(Offset(mPos), 1);
         player.UpdatePosX(move);
-
     }
 
     public void PlayerMoveY(int move, Player player)
@@ -111,14 +111,14 @@ public class MapManager : SingletonBehavior<MapManager>
         remainingSteps = 0;
     }
 
-    public void SetMoveComp(bool comp)
+    public void SetMoveStartComp(bool flag)
     {
-        moveComp = comp;
+        moveStartComp = flag;
     }
 
     public bool GetMoveComp()
     {
-        return moveComp;
+        return moveStartComp;
     }
 
     public Vector3 Offset(Vector3 pos)
