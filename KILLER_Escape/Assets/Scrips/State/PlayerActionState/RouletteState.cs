@@ -37,7 +37,7 @@ public partial class GameManager
         
         if(mapManager.GetMoveComp())
         {
-            mapManager.SetMoveComp(false);
+            mapManager.SetMoveStartComp(false);
 
             rouletteAnmEnd = false;
 
