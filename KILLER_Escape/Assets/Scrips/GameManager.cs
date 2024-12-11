@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public partial class GameManager : MonoBehaviour
@@ -103,14 +104,8 @@ public partial class GameManager : MonoBehaviour
         }
     }
 
-    public void RandomMove()
+    public void StartRouletteAction()
     {
-        movePoint = Random.Range(3, 8);
-
-        Debug.Log(movePoint);
-
-        mapManager.CalcMoveRange(movePoint, players[actionPlayerID]);
-
         SetCurrentPlayerAction(GameConst.PlayerActionState.ROULETTE);
     }
 
