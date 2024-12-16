@@ -8,7 +8,7 @@ using System.Net.NetworkInformation;
 
 public class MapManager : SingletonBehavior<MapManager>
 {
-    const float PLAYER_OFFSET_Y = 0.23f;
+    const float PLAYER_OFFSET_Y = -0.001f;
     const float PLAYER_OFFSET_Z = -0.2f;
     [SerializeField]
     public List<MapArray> mapRows = new List<MapArray>();
@@ -124,7 +124,7 @@ public class MapManager : SingletonBehavior<MapManager>
     public Vector3 Offset(Vector3 pos)
     {
         pos.y += PLAYER_OFFSET_Y;
-        pos.z += PLAYER_OFFSET_Z;
+        // pos.z += PLAYER_OFFSET_Z;
         return pos;
     }
 
