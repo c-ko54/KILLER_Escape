@@ -17,9 +17,9 @@ public partial class GameManager
         InitializeRoulette();
         moveButton[0].SetActive(false);
         roulette.SetActive(true);
-        movePoint = Random.Range(3,10);
-        Debug.Log(movePoint);
-        rouletteAnimater.SetInteger("rouletteCount", movePoint);
+        moveCount = Random.Range(3,10);
+        Debug.Log(moveCount);
+        rouletteAnimater.SetInteger("rouletteCount", moveCount);
 
         DOVirtual.DelayedCall(4.0f, () =>
         {
@@ -34,9 +34,9 @@ public partial class GameManager
 
         DispMoveButton();
         
-        if(mapManager.GetMoveComp())
+        if(mapManager.GetMoveStartComp())
         {
-            mapManager.SetMoveStartComp(false);
+            mapManager.SetMoveStartComp();
 
             rouletteAnmEnd = false;
 
@@ -47,7 +47,7 @@ public partial class GameManager
     void RouletteEnd()
     {
         rouletteAnmEnd = true;
-        mapManager.CalcMoveRange(movePoint, players[actionPlayerID]);
+        mapManager.CalcMoveRange(moveCount, players[actionPlayerID]);
         roulette.SetActive(false);
     }
 

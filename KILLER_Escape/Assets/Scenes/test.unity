@@ -1627,11 +1627,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4708037107080832507, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
   m_PrefabInstance: {fileID: 2664373074972620007}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &617630878 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4637530838282674181, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
-  m_PrefabInstance: {fileID: 2664373074972620007}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &617630879 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8723797617112384402, guid: 127e85ca5c8ed9c47b5a9da390488d17, type: 3}
@@ -4192,7 +4187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1585779071}
-  player:
+  playerPrefab:
   - {fileID: 7069733892799826301, guid: c69bb1548f93c984b9e9787d30c5a23f, type: 3}
   - {fileID: 7069733892799826301, guid: 0d8e62ff7f716044fa2f8e0042081d65, type: 3}
   - {fileID: 7069733892799826301, guid: fa9788c3090bac94e8390b21587550d0, type: 3}
@@ -4216,7 +4211,6 @@ MonoBehaviour:
   actionPlayerID: 0
   roulette: {fileID: 373503436}
   roulettePar: {fileID: 617630877}
-  rouletteTr: {fileID: 617630878}
   rouletteAnimater: {fileID: 617630879}
 --- !u!4 &1604547819
 Transform:

@@ -12,7 +12,8 @@ public partial class GameManager : MonoBehaviour
     private MapManager mapManager;
 
     [SerializeField]
-    private Player[] player = new Player[4];
+    private Player[] playerPrefab = new Player[4];
+    [HideInInspector]
     public Player[] players = new Player[4];
 
     [SerializeField]
@@ -22,8 +23,7 @@ public partial class GameManager : MonoBehaviour
 
     [SerializeField]
     private int actionPlayerID;
-    private int movePoint = 0;
-
+    private int moveCount = 0;
 
     void Start()
     {
@@ -65,7 +65,7 @@ public partial class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            players[i] = Instantiate(player[i], mapManager.GetStartPos(), Quaternion.identity);
+            players[i] = Instantiate(playerPrefab[i], mapManager.GetStartPos(), Quaternion.identity);
             players[i].SetPlayerID(i);
         }
     }
@@ -173,7 +173,7 @@ public partial class GameManager : MonoBehaviour
 
     private void InitButton()
     {
-        for(int i = 0; i < 4;i++)
+        for (int i = 0; i < 4; i++)
         {
             moveButton[i].SetActive(false);
         }
@@ -191,18 +191,28 @@ public partial class GameManager : MonoBehaviour
 
     public void Right()
     {
+        mapManager.SetMoveTime(mapManager.GetRemainingSteps());
+
         mapManager.PlayerMoveX(players[actionPlayerID].GetPosX() + mapManager.GetRemainingSteps(), players[actionPlayerID]);
+
         mapManager.InitRemainingSteps();
+
         players[actionPlayerID].SetMoveState(GameConst.MoveState.TO_RIGHT);
-        mapManager.SetMoveStartComp(true);
+
+        mapManager.SetMoveStartComp();
     }
 
     public void Left()
     {
+        mapManager.SetMoveTime(mapManager.GetRemainingSteps());
+
         mapManager.PlayerMoveX(players[actionPlayerID].GetPosX() + mapManager.GetRemainingSteps(), players[actionPlayerID]);
+
         mapManager.InitRemainingSteps();
+
         players[actionPlayerID].SetMoveState(GameConst.MoveState.TO_LEFT);
-        mapManager.SetMoveStartComp(true);
+
+        mapManager.SetMoveStartComp();
     }
 
     private void Initialize()

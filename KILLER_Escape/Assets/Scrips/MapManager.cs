@@ -14,7 +14,7 @@ public class MapManager : SingletonBehavior<MapManager>
     public List<MapArray> mapRows = new List<MapArray>();
     [SerializeField]
     private int remainingSteps;
-
+    private float moveTime;
     private bool moveStartComp;
     void Start()
     {
@@ -26,79 +26,87 @@ public class MapManager : SingletonBehavior<MapManager>
 
     }
 
-    public void CalcMoveRange(int move, Player player)
+    public void SetMoveTime(int moveCount)
     {
+        moveTime = 0.5f * moveCount;
+    }
+
+    public void CalcMoveRange(int moveCount, Player player)
+    {
+        SetMoveTime(moveCount);
+
         switch (player.currentMoveState)
         {
             case GameConst.MoveState.TO_RIGHT:
-                if (player.GetPosX() + move >= 11)
+                if (player.GetPosX() + moveCount >= 11)
                 {
-                    remainingSteps = (player.GetPosX() + move - 11) * -1;
+                    remainingSteps = (player.GetPosX() + moveCount - 11) * -1;
 
                     PlayerMoveX(11, player);
 
                     player.SetMoveState(GameConst.MoveState.RIGHT_END);
                 }
-                else if (player.GetPosX() + move == 11)
+                else if (player.GetPosX() + moveCount == 11)
                 {
                     PlayerMoveX(11, player);
 
                     player.SetMoveState(GameConst.MoveState.TO_LEFT);
 
-                    SetMoveStartComp(true);
+                    SetMoveStartComp();
                 }
                 else
                 {
-                    PlayerMoveX(move + player.GetPosX(), player);
+                    PlayerMoveX(moveCount + player.GetPosX(), player);
 
-                    SetMoveStartComp(true);
+                    SetMoveStartComp();
                 }
                 break;
             case GameConst.MoveState.TO_LEFT:
-                if (player.GetPosX() - move <= 0)
+                if (player.GetPosX() - moveCount <= 0)
                 {
-                    remainingSteps = (player.GetPosX() - move) * -1;
+                    remainingSteps = (player.GetPosX() - moveCount) * -1;
 
                     PlayerMoveX(0, player);
 
                     player.SetMoveState(GameConst.MoveState.LEFT_END);
                 }
-                else if (player.GetPosX() - move == 0)
+                else if (player.GetPosX() - moveCount == 0)
                 {
                     PlayerMoveX(0, player);
 
                     player.SetMoveState(GameConst.MoveState.TO_RIGHT);
 
-                    SetMoveStartComp(true);
+                    SetMoveStartComp();
                 }
                 else
                 {
-                    PlayerMoveX(player.GetPosX() - move, player);
+                    PlayerMoveX(player.GetPosX() - moveCount, player);
 
-                    SetMoveStartComp(true);
+                    SetMoveStartComp();
                 }
                 break;
         }
     }
 
-    public void PlayerMoveX(int move, Player player)
+    public void PlayerMoveX(int dest, Player player)
     {
         Transform pPos = player.transform;
         Vector3 mPos;
 
-        mPos = mapRows[player.GetPosY()].mapColumns[move].transform.position;
-        pPos.DOMove(Offset(mPos), 1);
-        player.UpdatePosX(move);
+        mPos = mapRows[player.GetPosY()].mapColumns[dest].transform.position;
+        pPos.DOMove(Offset(mPos), moveTime)
+        .SetEase(Ease.InOutSine);
+        player.UpdatePosX(dest);
     }
 
-    public void PlayerMoveY(int move, Player player)
+    public void PlayerMoveY(int dest, Player player)
     {
         Transform pPos = player.transform;
         Vector3 mPos;
 
-        mPos = mapRows[player.GetPosY() + move].mapColumns[player.GetPosX()].transform.position;
+        mPos = mapRows[player.GetPosY() + dest].mapColumns[player.GetPosX()].transform.position;
         pPos.DOMove(Offset(mPos), 1);
-        player.UpdatePosY(player.GetPosY() + move);
+        player.UpdatePosY(player.GetPosY() + dest);
     }
 
     public int GetRemainingSteps()
@@ -111,12 +119,14 @@ public class MapManager : SingletonBehavior<MapManager>
         remainingSteps = 0;
     }
 
-    public void SetMoveStartComp(bool flag)
+    public void SetMoveStartComp()
     {
-        moveStartComp = flag;
+        if(!moveStartComp) moveStartComp = true;
+
+        else moveStartComp = false;
     }
 
-    public bool GetMoveComp()
+    public bool GetMoveStartComp()
     {
         return moveStartComp;
     }
