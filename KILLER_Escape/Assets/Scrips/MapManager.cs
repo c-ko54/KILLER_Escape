@@ -8,8 +8,8 @@ using System.Net.NetworkInformation;
 
 public class MapManager : SingletonBehavior<MapManager>
 {
-    const float PLAYER_OFFSET_Y = -0.001f;
-    const float PLAYER_OFFSET_Z = -0.2f;
+    const float PLAYER_OFFSET_Y = -0.21f;
+    const float PLAYER_OFFSET_Z = -0.21f;
     [SerializeField]
     public List<MapArray> mapRows = new List<MapArray>();
     [SerializeField]

@@ -1108,8 +1108,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 5
+  m_fontSizeBase: 5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -3943,7 +3943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6235,7 +6235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapManager: {fileID: 1585779071}
   player:
-  - {fileID: 7069733892799826301, guid: c69bb1548f93c984b9e9787d30c5a23f, type: 3}
+  - {fileID: 3488917098178684652, guid: 9eda351302bb6d147a395ae5364d673c, type: 3}
   - {fileID: 7069733892799826301, guid: 0d8e62ff7f716044fa2f8e0042081d65, type: 3}
   - {fileID: 7069733892799826301, guid: fa9788c3090bac94e8390b21587550d0, type: 3}
   - {fileID: 7069733892799826301, guid: b0df8d3735fbaae4c8d2d14114706782, type: 3}
@@ -6507,8 +6507,8 @@ Camera:
   m_GameObject: {fileID: 1681692506}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.13519025, g: 1, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -6558,7 +6558,7 @@ Transform:
   m_GameObject: {fileID: 1681692506}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 0.22, z: -1.1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
